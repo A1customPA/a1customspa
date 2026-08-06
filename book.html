@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Book Your Install — A1 Customs PA</title>
+  <meta name="description" content="Book your ambient lighting or starlight headliner install with A1 Customs PA. Same-day turnaround. $100 deposit locks in your appointment." />
+  <link rel="icon" type="image/png" href="assets/img/logo.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,600;0,700;1,600;1,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <nav class="nav">
+    <div class="container nav-inner">
+      <a class="nav-logo" href="index.html"><img src="assets/img/logo-tight.png" alt="A1 Customs PA" /></a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="index.html#services">Services</a></li>
+        <li><a href="index.html#pricing">Pricing</a></li>
+        <li><a href="gallery.html">Our Work</a></li>
+        <li><a href="blog/index.html">Blog</a></li>
+      </ul>
+      <div style="display:flex;align-items:center;gap:14px;">
+        <a href="book.html" class="btn btn-gold">Book Now</a>
+        <button class="nav-burger" aria-label="Menu"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </nav>
+
+  <section class="section" style="padding-top:150px;">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">Book Your Install</span>
+        <h2>Reserve Your <span class="gold-text">Appointment</span></h2>
+        <p>Tell us about your car and pick your package. We'll confirm your date by text, then your $100 deposit locks it in.</p>
+      </div>
+
+      <div class="book-grid">
+        <!-- FORM -->
+        <form class="form-card" name="booking" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/thanks.html">
+          <input type="hidden" name="form-name" value="booking" />
+          <p style="display:none;"><label>Don't fill this out: <input name="bot-field" /></label></p>
+
+          <label for="name">Full Name *</label>
+          <input id="name" name="name" type="text" required placeholder="Your name" />
+
+          <div class="form-row">
+            <div>
+              <label for="phone">Phone *</label>
+              <input id="phone" name="phone" type="tel" required placeholder="(555) 555-5555" />
+            </div>
+            <div>
+              <label for="email">Email</label>
+              <input id="email" name="email" type="email" placeholder="you@email.com" />
+            </div>
+          </div>
+
+          <label for="vehicle">Year / Make / Model *</label>
+          <input id="vehicle" name="vehicle" type="text" required placeholder="e.g. 2023 Cadillac Escalade" />
+
+          <label for="service">Package *</label>
+          <select id="service" name="service" required>
+            <option value="" disabled selected>Choose your package…</option>
+            <optgroup label="Ambient Lighting">
+              <option>Ambient — American Car ($400)</option>
+              <option>Ambient — Foreign Car ($450)</option>
+              <option>Ambient — Electric Car (from $550)</option>
+            </optgroup>
+            <optgroup label="Starlight Headliners">
+              <option>Starlight — Sedan (from $750)</option>
+              <option>Starlight — SUV (from $825)</option>
+              <option>Starlight — Large SUV / Escalade / Suburban / Denali ($1,150)</option>
+            </optgroup>
+            <optgroup label="Package Deals (Ambient + Starlight)">
+              <option>Package — Sedan (from $1,050)</option>
+              <option>Package — SUV (from $1,250)</option>
+              <option>Package — Large SUV (from $1,500)</option>
+            </optgroup>
+            <option>Not sure yet — help me choose</option>
+          </select>
+
+          <div class="form-row">
+            <div>
+              <label for="date">Preferred Date *</label>
+              <input id="date" name="preferred_date" type="date" required />
+            </div>
+            <div>
+              <label for="date2">Backup Date</label>
+              <input id="date2" name="backup_date" type="date" />
+            </div>
+          </div>
+
+          <label for="notes">Anything Else?</label>
+          <textarea id="notes" name="notes" rows="4" placeholder="Custom logo in the roof? Specific colors? Tell us your vision."></textarea>
+
+          <button type="submit" class="btn btn-gold btn-lg">Request My Appointment</button>
+          <p class="form-note">After you submit, we'll text you to confirm your date and send a secure link for the $100 deposit.</p>
+        </form>
+
+        <!-- SUMMARY -->
+        <aside class="book-summary">
+          <div class="sum-card">
+            <h3>How Booking Works</h3>
+            <ul>
+              <li><span>1 · Send your request</span><span class="amt">2 min</span></li>
+              <li><span>2 · We confirm by text</span><span class="amt">Fast</span></li>
+              <li><span>3 · Pay deposit to lock date</span><span class="amt">$100</span></li>
+              <li><span>4 · Same-day install</span><span class="amt">⚡</span></li>
+            </ul>
+          </div>
+          <div class="sum-card">
+            <h3>Deposit Policy</h3>
+            <ul>
+              <li><span>Deposit (applied to total)</span><span class="amt">$100</span></li>
+              <li><span>Missed appointment</span><span class="amt">1 make-up date</span></li>
+              <li><span>Second miss</span><span class="amt">Deposit forfeited</span></li>
+            </ul>
+          </div>
+          <div class="sum-card" style="text-align:center;">
+            <h3>Prefer To Talk?</h3>
+            <p style="color:var(--muted); font-size:0.94rem; margin-bottom:16px;">Call or text us — we answer fast.</p>
+            <a href="tel:+17328121285" class="btn btn-ghost" style="width:100%;">📞 (732) 812-1285</a>
+            <a href="https://www.instagram.com/a1customspa" target="_blank" rel="noopener" class="btn btn-ghost" style="width:100%; margin-top:12px;">📸 DM @A1customspa</a>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container foot-inner">
+      <img src="assets/img/logo-tight.png" alt="A1 Customs PA" />
+      <div class="foot-links">
+        <a href="index.html#services">Services</a>
+        <a href="index.html#pricing">Pricing</a>
+        <a href="gallery.html">Our Work</a>
+        <a href="blog/index.html">Blog</a>
+        <a href="book.html">Book</a>
+      </div>
+      <p>© 2026 A1 Customs PA · Ambient Lighting &amp; Starlight Headliners · Pennsylvania</p>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="js/config.js"></script>
+</body>
+</html>
