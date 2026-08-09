@@ -35,52 +35,55 @@
       <div class="section-head">
         <span class="eyebrow">Book Your Install</span>
         <h2>Reserve Your <span class="gold-text">Appointment</span></h2>
-        <p>Tell us about your car and pick your package. We'll confirm your date by text, then your $100 deposit locks it in.</p>
+        <p>Three quick taps and a few details. We'll text you to confirm your date — your $100 deposit locks it in.</p>
       </div>
 
       <div class="book-grid">
         <!-- FORM -->
-        <form class="form-card" name="booking" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/thanks.html">
+        <form class="form-card" name="booking" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/thanks.html" id="bookform">
           <input type="hidden" name="form-name" value="booking" />
+          <input type="hidden" name="service" id="service-field" />
           <p style="display:none;"><label>Don't fill this out: <input name="bot-field" /></label></p>
 
-          <label for="name">Full Name *</label>
-          <input id="name" name="name" type="text" required placeholder="Your name" />
+          <span class="pick-label" style="margin-top:0;">1 · What are we installing?</span>
+          <div class="pick-grid" id="svc-grid">
+            <label class="pick-card"><input type="radio" name="svc_pick" value="ambient" />
+              <span class="card"><span class="pc-icon">💡</span><span class="pc-name">Ambient Lighting</span><span class="pc-sub">Doors, dash &amp; footwells</span><span class="pc-price">from $400</span></span>
+            </label>
+            <label class="pick-card"><input type="radio" name="svc_pick" value="starlight" />
+              <span class="card"><span class="pc-icon">✨</span><span class="pc-name">Starlight Roof</span><span class="pc-sub">Stars in your headliner</span><span class="pc-price">from $750</span></span>
+            </label>
+            <label class="pick-card"><input type="radio" name="svc_pick" value="package" />
+              <span class="card"><span class="pc-icon">🔥</span><span class="pc-name">Both — Package</span><span class="pc-sub">Best value, one visit</span><span class="pc-price">from $1,050</span></span>
+            </label>
+            <label class="pick-card"><input type="radio" name="svc_pick" value="unsure" />
+              <span class="card"><span class="pc-icon">🤔</span><span class="pc-name">Not Sure Yet</span><span class="pc-sub">We'll help you choose</span><span class="pc-price">&nbsp;</span></span>
+            </label>
+          </div>
+
+          <span class="pick-label">2 · What are you driving?</span>
+          <div class="pick-grid cols-3" id="veh-grid"><!-- filled by script --></div>
+          <p class="pick-error" id="pick-error">Please tap a service and a vehicle type first.</p>
+
+          <div class="your-price" id="your-price">Your price: <b id="price-out"></b> <span style="color:var(--muted); font-size:0.72rem; display:block; margin-top:4px;">Exact quote confirmed by text — $100 deposit counts toward this.</span></div>
+
+          <span class="pick-label">3 · Your details</span>
+          <label for="vehicle">Year / Make / Model *</label>
+          <input id="vehicle" name="vehicle" type="text" required placeholder="e.g. 2023 Cadillac Escalade" />
 
           <div class="form-row">
+            <div>
+              <label for="name">Your Name *</label>
+              <input id="name" name="name" type="text" required placeholder="Full name" />
+            </div>
             <div>
               <label for="phone">Phone *</label>
               <input id="phone" name="phone" type="tel" required placeholder="(555) 555-5555" />
             </div>
-            <div>
-              <label for="email">Email</label>
-              <input id="email" name="email" type="email" placeholder="you@email.com" />
-            </div>
           </div>
 
-          <label for="vehicle">Year / Make / Model *</label>
-          <input id="vehicle" name="vehicle" type="text" required placeholder="e.g. 2023 Cadillac Escalade" />
-
-          <label for="service">Package *</label>
-          <select id="service" name="service" required>
-            <option value="" disabled selected>Choose your package…</option>
-            <optgroup label="Ambient Lighting">
-              <option>Ambient — American Car ($400)</option>
-              <option>Ambient — Foreign Car ($450)</option>
-              <option>Ambient — Electric Car (from $550)</option>
-            </optgroup>
-            <optgroup label="Starlight Headliners">
-              <option>Starlight — Sedan (from $750)</option>
-              <option>Starlight — SUV (from $825)</option>
-              <option>Starlight — Large SUV / Escalade / Suburban / Denali ($1,150)</option>
-            </optgroup>
-            <optgroup label="Package Deals (Ambient + Starlight)">
-              <option>Package — Sedan (from $1,050)</option>
-              <option>Package — SUV (from $1,250)</option>
-              <option>Package — Large SUV (from $1,500)</option>
-            </optgroup>
-            <option>Not sure yet — help me choose</option>
-          </select>
+          <label for="email">Email <span style="opacity:.5;">(optional)</span></label>
+          <input id="email" name="email" type="email" placeholder="you@email.com" />
 
           <div class="form-row">
             <div>
@@ -88,16 +91,16 @@
               <input id="date" name="preferred_date" type="date" required />
             </div>
             <div>
-              <label for="date2">Backup Date</label>
+              <label for="date2">Backup Date <span style="opacity:.5;">(optional)</span></label>
               <input id="date2" name="backup_date" type="date" />
             </div>
           </div>
 
-          <label for="notes">Anything Else?</label>
-          <textarea id="notes" name="notes" rows="4" placeholder="Custom logo in the roof? Specific colors? Tell us your vision."></textarea>
+          <label for="notes">Anything Else? <span style="opacity:.5;">(optional)</span></label>
+          <textarea id="notes" name="notes" rows="3" placeholder="Custom logo in the roof? Specific colors? Tell us your vision."></textarea>
 
           <button type="submit" class="btn btn-gold btn-lg">Request My Appointment</button>
-          <p class="form-note">After you submit, we'll text you to confirm your date and send a secure link for the $100 deposit.</p>
+          <p class="form-note">Takes 2 minutes · No payment needed yet — we'll text you a secure deposit link after confirming your date.</p>
         </form>
 
         <!-- SUMMARY -->
@@ -122,7 +125,8 @@
           <div class="sum-card" style="text-align:center;">
             <h3>Prefer To Talk?</h3>
             <p style="color:var(--muted); font-size:0.94rem; margin-bottom:16px;">Call or text us — we answer fast.</p>
-            <a href="tel:+17328121285" class="btn btn-ghost" style="width:100%;">📞 (732) 812-1285</a>
+            <a href="tel:+17328121285" class="btn btn-ghost" style="width:100%;">📞 Call (732) 812-1285</a>
+            <a href="sms:+17328121285" class="btn btn-ghost" style="width:100%; margin-top:12px;">💬 Text Us</a>
             <a href="https://www.instagram.com/a1customs_pa" target="_blank" rel="noopener" class="btn btn-ghost" style="width:100%; margin-top:12px;">📸 DM @A1customs_pa</a>
           </div>
         </aside>
@@ -144,7 +148,91 @@
     </div>
   </footer>
 
+  <div class="action-bar">
+    <a href="tel:+17328121285">📞 Call</a>
+    <a href="sms:+17328121285">💬 Text</a>
+    <a href="book.html" class="ab-book">⚡ Book Now</a>
+  </div>
+
   <script src="js/main.js"></script>
   <script src="js/config.js"></script>
+  <script>
+    (function () {
+      var VEHICLES = {
+        ambient: [
+          { v: "American Car", sub: "Ford, Chevy, Dodge…", price: "$400", exact: true },
+          { v: "Foreign Car", sub: "Mercedes, BMW, Lexus…", price: "$450", exact: true },
+          { v: "Electric Car", sub: "Tesla, Rivian…", price: "$550", exact: false },
+        ],
+        starlight: [
+          { v: "Sedan", sub: "Any make", price: "$750", exact: false },
+          { v: "SUV", sub: "Standard size", price: "$825", exact: false },
+          { v: "Large SUV", sub: "Escalade · Suburban · Denali", price: "$1,150", exact: true },
+        ],
+        package: [
+          { v: "Sedan", sub: "Ambient + starlight", price: "$1,050", exact: false },
+          { v: "SUV", sub: "Ambient + starlight", price: "$1,250", exact: false },
+          { v: "Large SUV", sub: "Escalade · Suburban · Denali", price: "$1,500", exact: false },
+        ],
+        unsure: [
+          { v: "Sedan", sub: "", price: "" },
+          { v: "SUV", sub: "", price: "" },
+          { v: "Large SUV", sub: "", price: "" },
+        ],
+      };
+      var NAMES = { ambient: "Ambient Lighting", starlight: "Starlight Roof", package: "Package (Ambient + Starlight)", unsure: "Not sure yet" };
+      var vehGrid = document.getElementById("veh-grid");
+      var priceBox = document.getElementById("your-price");
+      var priceOut = document.getElementById("price-out");
+      var serviceField = document.getElementById("service-field");
+      var err = document.getElementById("pick-error");
+
+      function render(svc) {
+        vehGrid.innerHTML = VEHICLES[svc].map(function (o, i) {
+          return '<label class="pick-card"><input type="radio" name="veh_pick" value="' + i + '" />' +
+            '<span class="card"><span class="pc-name">' + o.v + "</span>" +
+            (o.sub ? '<span class="pc-sub">' + o.sub + "</span>" : "") +
+            (o.price ? '<span class="pc-price">' + (o.exact ? "" : "from ") + o.price + "</span>" : "") +
+            "</span></label>";
+        }).join("");
+      }
+
+      function update() {
+        var svcInput = document.querySelector('input[name="svc_pick"]:checked');
+        var veh = document.querySelector('input[name="veh_pick"]:checked');
+        if (!svcInput) return;
+        var svc = svcInput.value;
+        var o = veh ? VEHICLES[svc][veh.value] : null;
+        if (o) {
+          serviceField.value = NAMES[svc] + " — " + o.v + (o.price ? " (" + (o.exact ? "" : "from ") + o.price + ")" : "");
+          err.style.display = "none";
+          if (o.price) {
+            priceOut.textContent = (o.exact ? "" : "from ") + o.price;
+            priceBox.style.display = "block";
+          } else {
+            priceBox.style.display = "none";
+          }
+        } else {
+          serviceField.value = "";
+          priceBox.style.display = "none";
+        }
+      }
+
+      document.getElementById("svc-grid").addEventListener("change", function () {
+        render(document.querySelector('input[name="svc_pick"]:checked').value);
+        update();
+      });
+      vehGrid.addEventListener("change", update);
+      render("package");
+
+      document.getElementById("bookform").addEventListener("submit", function (e) {
+        if (!serviceField.value) {
+          e.preventDefault();
+          err.style.display = "block";
+          document.getElementById("svc-grid").scrollIntoView({ behavior: "smooth", block: "center" });
+        }
+      });
+    })();
+  </script>
 </body>
 </html>
