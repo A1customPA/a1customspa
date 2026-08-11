@@ -15,11 +15,11 @@
 
   <nav class="nav">
     <div class="container nav-inner">
-      <a class="nav-logo" href="index.html"><img src="assets/img/logo-tight.png" alt="A1 Customs PA" /></a>
+      <a class="nav-logo" href="index.html"><img src="assets/img/logo-transparent.png" alt="A1 Customs PA" /></a>
       <ul class="nav-links">
         <li><a href="index.html">Home</a></li>
-        <li><a href="index.html#services">Services</a></li>
         <li><a href="index.html#pricing">Pricing</a></li>
+        <li><a href="index.html#services">Services</a></li>
         <li><a href="gallery.html">Our Work</a></li>
         <li><a href="blog/index.html">Blog</a></li>
       </ul>
@@ -48,13 +48,13 @@
           <span class="pick-label" style="margin-top:0;">1 · What are we installing?</span>
           <div class="pick-grid" id="svc-grid">
             <label class="pick-card"><input type="radio" name="svc_pick" value="ambient" />
-              <span class="card"><span class="pc-icon">💡</span><span class="pc-name">Ambient Lighting</span><span class="pc-sub">Doors, dash &amp; footwells</span><span class="pc-price">from $400</span></span>
+              <span class="card"><span class="pc-icon">💡</span><span class="pc-name">Ambient Lighting</span><span class="pc-sub">Doors, dash &amp; footwells</span><span class="pc-price">$400</span></span>
             </label>
             <label class="pick-card"><input type="radio" name="svc_pick" value="starlight" />
-              <span class="card"><span class="pc-icon">✨</span><span class="pc-name">Starlight Roof</span><span class="pc-sub">Stars in your headliner</span><span class="pc-price">from $750</span></span>
+              <span class="card"><span class="pc-icon">✨</span><span class="pc-name">Starlight Roof</span><span class="pc-sub">Stars in your headliner</span><span class="pc-price">$750</span></span>
             </label>
             <label class="pick-card"><input type="radio" name="svc_pick" value="package" />
-              <span class="card"><span class="pc-icon">🔥</span><span class="pc-name">Both — Package</span><span class="pc-sub">Best value, one visit</span><span class="pc-price">from $1,050</span></span>
+              <span class="card"><span class="pc-icon">🔥</span><span class="pc-name">Both — Package</span><span class="pc-sub">Best value, one visit</span><span class="pc-price">$1,050</span></span>
             </label>
             <label class="pick-card"><input type="radio" name="svc_pick" value="unsure" />
               <span class="card"><span class="pc-icon">🤔</span><span class="pc-name">Not Sure Yet</span><span class="pc-sub">We'll help you choose</span><span class="pc-price">&nbsp;</span></span>
@@ -78,12 +78,20 @@
             </div>
             <div>
               <label for="phone">Phone *</label>
-              <input id="phone" name="phone" type="tel" required placeholder="(555) 555-5555" />
+              <input id="phone" name="phone" type="tel" inputmode="numeric" required placeholder="5555555555" maxlength="11" pattern="[0-9]{10,11}" title="Phone number — digits only" />
             </div>
           </div>
 
-          <label for="email">Email <span style="opacity:.5;">(optional)</span></label>
-          <input id="email" name="email" type="email" placeholder="you@email.com" />
+          <div class="form-row">
+            <div>
+              <label for="email">Email <span style="opacity:.5;">(optional)</span></label>
+              <input id="email" name="email" type="email" placeholder="you@email.com" />
+            </div>
+            <div>
+              <label for="city">Your City / Area <span style="opacity:.5;">(we travel — fee quoted by location)</span></label>
+              <input id="city" name="city" type="text" placeholder="e.g. Allentown, PA" />
+            </div>
+          </div>
 
           <div class="form-row">
             <div>
@@ -136,15 +144,15 @@
 
   <footer>
     <div class="container foot-inner">
-      <img src="assets/img/logo-tight.png" alt="A1 Customs PA" />
+      <img src="assets/img/logo-transparent.png" alt="A1 Customs PA" />
       <div class="foot-links">
-        <a href="index.html#services">Services</a>
         <a href="index.html#pricing">Pricing</a>
+        <a href="index.html#services">Services</a>
         <a href="gallery.html">Our Work</a>
         <a href="blog/index.html">Blog</a>
         <a href="book.html">Book</a>
       </div>
-      <p>© 2026 A1 Customs PA · Ambient Lighting &amp; Starlight Headliners · Pennsylvania</p>
+      <p>© 2026 A1 Customs PA · Ambient Lighting &amp; Starlight Headliners · PA · NY · NJ · We Travel</p>
     </div>
   </footer>
 
@@ -192,7 +200,7 @@
           return '<label class="pick-card"><input type="radio" name="veh_pick" value="' + i + '" />' +
             '<span class="card"><span class="pc-name">' + o.v + "</span>" +
             (o.sub ? '<span class="pc-sub">' + o.sub + "</span>" : "") +
-            (o.price ? '<span class="pc-price">' + (o.exact ? "" : "from ") + o.price + "</span>" : "") +
+            (o.price ? '<span class="pc-price">' + "" + o.price + "</span>" : "") +
             "</span></label>";
         }).join("");
       }
@@ -204,10 +212,10 @@
         var svc = svcInput.value;
         var o = veh ? VEHICLES[svc][veh.value] : null;
         if (o) {
-          serviceField.value = NAMES[svc] + " — " + o.v + (o.price ? " (" + (o.exact ? "" : "from ") + o.price + ")" : "");
+          serviceField.value = NAMES[svc] + " — " + o.v + (o.price ? " (" + "" + o.price + ")" : "");
           err.style.display = "none";
           if (o.price) {
-            priceOut.textContent = (o.exact ? "" : "from ") + o.price;
+            priceOut.textContent = "" + o.price;
             priceBox.style.display = "block";
           } else {
             priceBox.style.display = "none";
@@ -224,6 +232,13 @@
       });
       vehGrid.addEventListener("change", update);
       render("package");
+
+      // phone field: digits only, even on paste
+      var phoneInput = document.getElementById("phone");
+      phoneInput.addEventListener("input", function () {
+        var digits = phoneInput.value.replace(/\D/g, "");
+        if (phoneInput.value !== digits) phoneInput.value = digits;
+      });
 
       document.getElementById("bookform").addEventListener("submit", function (e) {
         if (!serviceField.value) {

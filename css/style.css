@@ -92,7 +92,7 @@ h1, h2, h3, h4 {
   display: flex; align-items: center; justify-content: space-between;
   height: 72px;
 }
-.nav-logo img { height: 52px; width: auto; mix-blend-mode: screen; }
+.nav-logo img { height: 52px; width: auto; }
 .nav-links { display: flex; align-items: center; gap: 30px; list-style: none; }
 .nav-links a {
   font-family: var(--font-display); font-style: italic; font-weight: 600;
@@ -144,6 +144,7 @@ h1, h2, h3, h4 {
   display: grid; grid-template-columns: 1.15fr 0.85fr;
   gap: 56px; align-items: center;
 }
+.hero .eyebrow { font-size: 1.05rem; letter-spacing: 0.18em; }
 .hero h1 {
   font-size: clamp(2.3rem, 5.4vw, 4rem);
   margin: 18px 0 20px;
@@ -455,7 +456,7 @@ footer {
   border-top: 1px solid var(--line); padding: 44px 0; background: var(--bg);
 }
 .foot-inner { display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
-.foot-inner img { height: 44px; mix-blend-mode: screen; }
+.foot-inner img { height: 44px; }
 .foot-inner p { color: var(--muted); font-size: 0.82rem; }
 .foot-links { display: flex; gap: 22px; }
 .foot-links a { color: var(--muted); font-size: 0.85rem; transition: color 0.2s; }
