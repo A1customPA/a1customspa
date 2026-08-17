@@ -48,13 +48,13 @@
           <span class="pick-label" style="margin-top:0;">1 · What are we installing?</span>
           <div class="pick-grid" id="svc-grid">
             <label class="pick-card"><input type="radio" name="svc_pick" value="ambient" />
-              <span class="card"><span class="pc-icon">💡</span><span class="pc-name">Ambient Lighting</span><span class="pc-sub">Doors, dash &amp; footwells</span><span class="pc-price">$400</span></span>
+              <span class="card"><span class="pc-icon">💡</span><span class="pc-name">Ambient Lighting</span><span class="pc-sub">Doors, dash &amp; footwells</span><span class="pc-price">from $400</span></span>
             </label>
             <label class="pick-card"><input type="radio" name="svc_pick" value="starlight" />
-              <span class="card"><span class="pc-icon">✨</span><span class="pc-name">Starlight Roof</span><span class="pc-sub">Stars in your headliner</span><span class="pc-price">$750</span></span>
+              <span class="card"><span class="pc-icon">✨</span><span class="pc-name">Starlight Roof</span><span class="pc-sub">Stars in your headliner</span><span class="pc-price">from $750</span></span>
             </label>
             <label class="pick-card"><input type="radio" name="svc_pick" value="package" />
-              <span class="card"><span class="pc-icon">🔥</span><span class="pc-name">Both — Package</span><span class="pc-sub">Best value, one visit</span><span class="pc-price">$1,050</span></span>
+              <span class="card"><span class="pc-icon">🔥</span><span class="pc-name">Both — Package</span><span class="pc-sub">Best value, one visit</span><span class="pc-price">from $1,050</span></span>
             </label>
             <label class="pick-card"><input type="radio" name="svc_pick" value="unsure" />
               <span class="card"><span class="pc-icon">🤔</span><span class="pc-name">Not Sure Yet</span><span class="pc-sub">We'll help you choose</span><span class="pc-price">&nbsp;</span></span>
@@ -104,8 +104,8 @@
             </div>
           </div>
 
-          <label for="notes">Anything Else? <span style="opacity:.5;">(optional)</span></label>
-          <textarea id="notes" name="notes" rows="3" placeholder="Custom logo in the roof? Specific colors? Tell us your vision."></textarea>
+          <label for="notes">Add-Ons / Anything Else? <span style="opacity:.5;">(optional)</span></label>
+          <textarea id="notes" name="notes" rows="3" placeholder="Shooting stars (from $150), sunroof ambient (from $175), custom star logo (from $175), specific colors — tell us your vision."></textarea>
 
           <button type="submit" class="btn btn-gold btn-lg">Request My Appointment</button>
           <p class="form-note">Takes 2 minutes · No payment needed yet — we'll text you a secure deposit link after confirming your date.</p>
@@ -201,7 +201,7 @@
           return '<label class="pick-card"><input type="radio" name="veh_pick" value="' + i + '" />' +
             '<span class="card"><span class="pc-name">' + o.v + "</span>" +
             (o.sub ? '<span class="pc-sub">' + o.sub + "</span>" : "") +
-            (o.price ? '<span class="pc-price">' + "" + o.price + "</span>" : "") +
+            (o.price ? '<span class="pc-price">from ' + o.price + "</span>" : "") +
             "</span></label>";
         }).join("");
       }
@@ -216,7 +216,7 @@
           serviceField.value = NAMES[svc] + " — " + o.v + (o.price ? " (" + "" + o.price + ")" : "");
           err.style.display = "none";
           if (o.price) {
-            priceOut.textContent = "" + o.price;
+            priceOut.textContent = "from " + o.price;
             priceBox.style.display = "block";
           } else {
             priceBox.style.display = "none";
